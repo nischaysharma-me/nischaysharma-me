@@ -73,10 +73,6 @@
 
 <div align="center">
 
----
-
-<div align="center">
-
 ## 📈 Contribution Graph
 
 <br/>
@@ -86,11 +82,6 @@
 
 </div>
 
----
-
-<div align="center">
-
-## 🐍 Contribution Snake
 
 <br/>
 
