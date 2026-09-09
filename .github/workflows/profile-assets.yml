@@ -29,7 +29,7 @@ jobs:
           target_branch: output
           build_dir: dist
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   assets:
     runs-on: ubuntu-latest
@@ -37,13 +37,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # NOTE: these three steps need a real Personal Access Token (classic)
+      # with "repo" + "read:user" scopes, saved as the PAT_TOKEN secret.
+      # The default secrets.GITHUB_TOKEN is repo-scoped only and cannot
+      # query general profile/contribution data — using it here causes
+      # "Error fetching user info" failures.
       - name: Generate trophies (self-hosted, no rate limits)
         uses: Erik-Donath/github-profile-trophy@feature/generate-svg
         with:
           username: nischaysharma-me
           output_path: profile/trophy.svg
           theme: flat
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Generate stats card
         uses: stats-organization/github-readme-stats-action@v2
@@ -51,7 +56,7 @@ jobs:
           card: stats
           options: username=nischaysharma-me&show_icons=true&theme=react&bg_color=000000&title_color=B91C1C&icon_color=B91C1C&text_color=ffffff&border_color=B91C1C
           path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Generate top languages card
         uses: stats-organization/github-readme-stats-action@v2
@@ -59,7 +64,7 @@ jobs:
           card: top-langs
           options: username=nischaysharma-me&layout=compact&theme=react&bg_color=000000&title_color=B91C1C&text_color=ffffff&border_color=B91C1C
           path: profile/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}
 
       - name: Commit generated assets
         uses: stefanzweifel/git-auto-commit-action@v5
