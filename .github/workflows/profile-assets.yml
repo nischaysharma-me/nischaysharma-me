@@ -46,7 +46,7 @@ jobs:
         uses: Erik-Donath/github-profile-trophy@feature/generate-svg
         with:
           username: nischaysharma-me
-          output_path: profile/trophy.svg
+          file: profile/trophy.svg
           theme: flat
           token: ${{ secrets.PAT_TOKEN }}
 
@@ -69,5 +69,5 @@ jobs:
       - name: Commit generated assets
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh trophies & stats cards"
+          commit_message: "chore: refresh stats & top languages cards"
           file_pattern: "profile/*.svg"

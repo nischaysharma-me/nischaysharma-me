@@ -1,0 +1,71 @@
+<svg width="830" height="115" viewBox="0 0 830 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: 700 10px 'Segoe UI', Ubuntu, Sans-Serif; fill: #ffffff; text-anchor: middle; }
+    .rank { font: 800 20px 'Segoe UI', Ubuntu, Sans-Serif; fill: #B91C1C; text-anchor: middle; }
+    .score { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #aaaaaa; text-anchor: middle; }
+    .card-bg { fill: #000000; stroke: #B91C1C; stroke-width: 1.5; rx: 8px; }
+  </style>
+  
+  <!-- Multi-Language Trophy -->
+  <g transform="translate(0, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Multiple Lang</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">A</text>
+    <text class="score" x="55" y="96">8 Langs</text>
+  </g>
+
+  <!-- Commits Trophy -->
+  <g transform="translate(120, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Commits</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">B+</text>
+    <text class="score" x="55" y="96">540+ Commits</text>
+  </g>
+
+  <!-- Pull Requests Trophy -->
+  <g transform="translate(240, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Pull Requests</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">A</text>
+    <text class="score" x="55" y="96">220+ PRs</text>
+  </g>
+
+  <!-- Issues Trophy -->
+  <g transform="translate(360, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Issues</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">B</text>
+    <text class="score" x="55" y="96">115 Issues</text>
+  </g>
+
+  <!-- Repositories Trophy -->
+  <g transform="translate(480, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Repositories</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">B</text>
+    <text class="score" x="55" y="96">Active</text>
+  </g>
+
+  <!-- Experience Trophy -->
+  <g transform="translate(600, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Experience</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">S</text>
+    <text class="score" x="55" y="96">5+ Years</text>
+  </g>
+
+  <!-- Total Stars Trophy -->
+  <g transform="translate(720, 0)">
+    <rect class="card-bg" width="110" height="110" />
+    <text class="title" x="55" y="24">Contributions</text>
+    <circle cx="55" cy="55" r="22" fill="#161b22" stroke="#B91C1C" stroke-width="1.5" />
+    <text class="rank" x="55" y="62">A</text>
+    <text class="score" x="55" y="96">Consistent</text>
+  </g>
+</svg>
