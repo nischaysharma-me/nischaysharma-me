@@ -54,7 +54,7 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          options: username=nischaysharma-me&show_icons=true&theme=react&bg_color=000000&title_color=B91C1C&icon_color=B91C1C&text_color=ffffff&border_color=B91C1C
+          options: username=nischaysharma-me&show_icons=true&theme=react&bg_color=161616&title_color=E57373&icon_color=E57373&text_color=ffffff&border_color=E57373
           path: profile/stats.svg
           token: ${{ secrets.PAT_TOKEN }}
 
@@ -62,7 +62,7 @@ jobs:
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: top-langs
-          options: username=nischaysharma-me&layout=compact&theme=react&bg_color=000000&title_color=B91C1C&text_color=ffffff&border_color=B91C1C
+          options: username=nischaysharma-me&layout=compact&theme=react&bg_color=161616&title_color=E57373&text_color=ffffff&border_color=E57373
           path: profile/top-langs.svg
           token: ${{ secrets.PAT_TOKEN }}
 
