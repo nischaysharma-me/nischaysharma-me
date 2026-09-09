@@ -143,28 +143,32 @@ Passionately integrating LLMs (Gemini, Claude, GPT) into real-world platforms �
 
 ### 💼 Experience
 
-```text
-┌── 🔴 Lead Full Stack Engineer ── Edvanta Technologies Pvt. Ltd
-│   └── Jan 2024 – Present
-│       • Architecting multi-LLM AI engines (Gemini, Claude, GPT) with dynamic prompt chaining
-│       • Constructing real-time Knowledge Graphs (Neo4j) and vector search pipelines
-│       • Leading engineering & deploying microservices to AWS ECS Fargate via automated CI/CD
-│
-├── 🔴 Senior Full Stack Engineer ── Edvanta Technologies Pvt. Ltd
-│   └── Jan 2023 – Dec 2023
-│       • Built immersive story-based 3D learning environments featuring AI-driven NPCs
-│       • Directed development of high-engagement web LMS games with intelligent guidance systems
-│
-├── 🔴 Full Stack Developer ── Edvanta Technologies Pvt. Ltd
-│   └── Jan 2022 – Dec 2022
-│       • Integrated Moodle LMS with ThoughtJumper platform for the Indian Navy via Node.js & REST APIs
-│       • Engineered robust data pipelines ensuring defense-grade compliance and low-latency sync
-│
-└── 🔴 Full Stack Developer ── AppAvengers Labs Pvt. Ltd
-    └── Oct 2020 – Oct 2021
-        • Developed full-stack web applications with Node.js, Express, and EJS
-        • Implemented OAuth-based authentication workflows and responsive UI components
-```
+#### 💻 Lead Full Stack Engineer &nbsp;·&nbsp; Edvanta Technologies Pvt. Ltd
+`Jan 2024 – Present`
+- **Multi-LLM Orchestration**: Architecting multi-LLM AI engines (Gemini, Claude, GPT) with dynamic prompt chaining.
+- **Knowledge Graphs & Neo4j**: Constructing real-time Knowledge Graphs and vector search pipelines for deep contextual synthesis.
+- **Cloud Microservices**: Leading full-stack engineering and deploying containerized microservices to AWS ECS Fargate via automated CI/CD.
+
+<br/>
+
+#### 🎮 Senior Full Stack Engineer &nbsp;·&nbsp; Edvanta Technologies Pvt. Ltd
+`Jan 2023 – Dec 2023`
+- **Immersive 3D Learning**: Built story-based 3D interactive learning environments powered by AI-driven NPCs.
+- **Intelligent LMS Gaming**: Directed development of high-engagement web LMS platforms with embedded real-time AI guides.
+
+<br/>
+
+#### ⚙️ Full Stack Developer &nbsp;·&nbsp; Edvanta Technologies Pvt. Ltd
+`Jan 2022 – Dec 2022`
+- **Defense Platform Integration**: Integrated Moodle LMS with the ThoughtJumper platform for the **Indian Navy** via Node.js & REST APIs.
+- **Resilient Data Pipelines**: Engineered robust backend services ensuring defense-grade compliance, security, and low-latency sync.
+
+<br/>
+
+#### 🚀 Full Stack Developer &nbsp;·&nbsp; AppAvengers Labs Pvt. Ltd
+`Oct 2020 – Oct 2021`
+- **Full-Stack Web Apps**: Developed performant, dynamic web applications with Node.js, Express, and EJS.
+- **Auth & UI**: Implemented OAuth-based authentication workflows, state management, and responsive frontend components.
 
 ---
 
