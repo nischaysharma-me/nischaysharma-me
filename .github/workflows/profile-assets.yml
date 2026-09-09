@@ -1,0 +1,68 @@
+name: Update Profile Assets
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # once a day at midnight UTC
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate contribution snake
+        uses: Platane/snk@v3
+        with:
+          github_user_name: nischaysharma-me
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Push snake to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate trophies (self-hosted, no rate limits)
+        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
+        with:
+          username: nischaysharma-me
+          output_path: profile/trophy.svg
+          theme: flat
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=nischaysharma-me&show_icons=true&theme=react&bg_color=000000&title_color=B91C1C&icon_color=B91C1C&text_color=ffffff&border_color=B91C1C
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=nischaysharma-me&layout=compact&theme=react&bg_color=000000&title_color=B91C1C&text_color=ffffff&border_color=B91C1C
+          path: profile/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit generated assets
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh trophies & stats cards"
+          file_pattern: "profile/*.svg"
