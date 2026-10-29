@@ -14,6 +14,8 @@ import math
 import os
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 USERNAME = os.environ.get("PROFILE_USER", "nischaysharma-me")
@@ -109,7 +111,17 @@ query($login: String!, $after: String) {
 """
 
 
-def gh_graphql(query: str, variables: dict) -> dict:
+def _parse_graphql(data: dict) -> dict:
+    if data.get("errors"):
+        messages = "; ".join(error.get("message", "unknown") for error in data["errors"])
+        raise RuntimeError(messages)
+    if "data" not in data:
+        message = data.get("message") or json.dumps(data)[:300]
+        raise RuntimeError(message)
+    return data["data"]
+
+
+def graphql_with_token(query: str, variables: dict) -> dict:
     payload = json.dumps({"query": query, "variables": variables})
     result = subprocess.run(
         ["gh", "api", "graphql", "--input", "-"],
@@ -120,27 +132,41 @@ def gh_graphql(query: str, variables: dict) -> dict:
     )
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or result.stdout.strip() or "gh api graphql failed")
-    data = json.loads(result.stdout)
-    if data.get("errors"):
-        messages = "; ".join(error.get("message", "unknown") for error in data["errors"])
-        raise RuntimeError(messages)
-    return data["data"]
+    return _parse_graphql(json.loads(result.stdout))
 
 
-def fetch_user() -> dict:
+def graphql_public(query: str, variables: dict) -> dict:
+    """Public profile data, with no Authorization header.
+
+    A contents-scoped Actions token cannot read another account's contribution
+    fields (the old trophy step failed that way). Runners can still read the
+    public profile anonymously.
+    """
+    body = json.dumps({"query": query, "variables": variables}).encode()
+    request = urllib.request.Request(
+        "https://api.github.com/graphql",
+        data=body,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
+            "User-Agent": "profile-assets",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = response.read().decode()
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode(errors="replace")[:300]
+        raise RuntimeError(f"HTTP {exc.code}: {detail}") from exc
+    return _parse_graphql(json.loads(payload))
+
+
+def collect_user(request, query: str) -> dict:
     repos: list[dict] = []
     user = None
     after = None
-    query = STATS_QUERY
     while True:
-        try:
-            data = gh_graphql(query, {"login": USERNAME, "after": after})
-        except RuntimeError as exc:
-            if query is STATS_QUERY and after is None:
-                print(f"Private contribution fields unavailable ({exc}); using public counts.", file=sys.stderr)
-                query = PUBLIC_COMMITS_QUERY
-                continue
-            raise
+        data = request(query, {"login": USERNAME, "after": after})
         page_user = data["user"]
         if page_user is None:
             raise RuntimeError(f"GitHub user {USERNAME} was not found")
@@ -154,6 +180,33 @@ def fetch_user() -> dict:
     assert user is not None
     user["repositories"]["nodes"] = repos
     return user
+
+
+def fetch_user() -> dict:
+    attempts = []
+    if os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN"):
+        attempts.extend(
+            [
+                ("workflow token", graphql_with_token, STATS_QUERY),
+                ("workflow token", graphql_with_token, PUBLIC_COMMITS_QUERY),
+            ]
+        )
+    attempts.extend(
+        [
+            ("public API", graphql_public, STATS_QUERY),
+            ("public API", graphql_public, PUBLIC_COMMITS_QUERY),
+        ]
+    )
+    errors: list[str] = []
+    for label, request, query in attempts:
+        try:
+            user = collect_user(request, query)
+        except Exception as exc:
+            errors.append(f"{label}: {exc}")
+            continue
+        print(f"Loaded profile data via {label}.", file=sys.stderr)
+        return user
+    raise RuntimeError("Could not load GitHub profile data. " + " | ".join(errors))
 
 
 def exponential_cdf(x: float) -> float:
@@ -346,9 +399,6 @@ def render_languages(langs: list[dict]) -> str:
 
 
 def main() -> None:
-    if not os.environ.get("GH_TOKEN") and not os.environ.get("GITHUB_TOKEN"):
-        print("GH_TOKEN or GITHUB_TOKEN is required.", file=sys.stderr)
-        sys.exit(1)
     user = fetch_user()
     langs = language_totals(user["repositories"]["nodes"])
     if not langs:
