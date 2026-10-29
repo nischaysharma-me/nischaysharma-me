@@ -252,7 +252,7 @@ Passionately integrating LLMs (Gemini, Claude, GPT) into real-world platforms â€
 
 <br/><br/>
 
-[![](https://visitcount.itsvg.in/api?id=nischaysharma-me&icon=0&color=12)](https://visitcount.itsvg.in)
+[![Visits](https://hits.sh/github.com/nischaysharma-me.svg?style=flat-square&label=Visits&color=E57373&labelColor=1e1e1e)](https://hits.sh/github.com/nischaysharma-me/)
 
 <br/><br/>
 

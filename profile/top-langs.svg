@@ -1,247 +1,42 @@
-
-      <svg
-        width="300"
-        height="165"
-        viewBox="0 0 300 165"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-labelledby="descId"
-      >
-        <title id="titleId"></title>
-        <desc id="descId"></desc>
-        <style>
-          .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #E57373;
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
-          }
-          @supports(-moz-appearance: auto) {
-            /* Selector detects Firefox */
-            .header { font-size: 15.5px; }
-          }
-          
-    @keyframes slideInAnimation {
-      from {
-        width: 0;
-      }
-      to {
-        width: calc(100%-100px);
-      }
-    }
-    @keyframes growWidthAnimation {
-      from {
-        width: 0;
-      }
-      to {
-        width: 100%;
-      }
-    }
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #ffffff;
-    }
-    @supports(-moz-appearance: auto) {
-      /* Selector detects Firefox */
-      .stat { font-size:12px; }
-    }
-    .bold { font-weight: 700 }
-    .lang-name {
-      font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
-      fill: #ffffff;
-    }
-    .stagger {
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
-    #rect-mask rect{
-      animation: slideInAnimation 1s ease-in-out forwards;
-    }
-    .lang-progress{
-      animation: growWidthAnimation 0.6s ease-in-out forwards;
-    }
-    .progress-background { fill: #ddd; }
-    
-          
-
-          
-      /* Animations */
-      @keyframes scaleInAnimation {
-        from {
-          transform: translate(-5px, 5px) scale(0);
-        }
-        to {
-          transform: translate(-5px, 5px) scale(1);
-        }
-      }
-      @keyframes fadeInAnimation {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    
-          
-        </style>
-
-        
-        <defs>
-          
-          
-        </defs>
-        
-
-        <rect
-          data-testid="card-bg"
-          class="card-bg"
-          x="0.5"
-          y="0.5"
-          rx="4.5"
-          height="99%"
-          stroke="#E57373"
-          width="299"
-          fill="#161616"
-          stroke-opacity="1"
-        />
-
-        
-      <g
-        data-testid="card-title"
-        transform="translate(25, 35)"
-      >
-        <g transform="translate(0, 0)">
-      <text
-        x="0"
-        y="0"
-        class="header"
-        data-testid="header"
-      >Most Used Languages</text>
-    </g>
+<svg width="340" height="165" viewBox="0 0 340 165" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Most used languages">
+  <title>Most Used Languages</title>
+  <style>
+    .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #E57373; }
+    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #ffffff; }
+  </style>
+  <rect x="0.5" y="0.5" rx="4.5" width="339" height="164" fill="#161616" stroke="#E57373"/>
+  <g transform="translate(25, 35)">
+    <text class="header" x="0" y="0">Most Used Languages</text>
+  </g>
+  <g transform="translate(25, 55)">
+    <rect x="0" y="0" width="250" height="8" rx="4" fill="#30363d"/>
+    <svg x="0" y="0" width="250" height="8">
+      <defs>
+        <clipPath id="lang-bar"><rect x="0" y="0" width="250" height="8" rx="4"/></clipPath>
+      </defs>
+      <g clip-path="url(#lang-bar)">
+        <rect x="0.00" y="0" width="136.70" height="8" fill="#3178c6"/><rect x="136.70" y="0" width="57.63" height="8" fill="#3572A5"/><rect x="194.33" y="0" width="22.90" height="8" fill="#f1e05a"/><rect x="217.23" y="0" width="19.52" height="8" fill="#e34c26"/><rect x="236.75" y="0" width="8.70" height="8" fill="#3D6117"/><rect x="245.46" y="0" width="4.54" height="8" fill="#c6538c"/>
       </g>
-    
-
-        <g
-          data-testid="main-card-body"
-          transform="translate(0, 55)"
-        >
-          
-    <svg data-testid="lang-items" x="25">
-      
-  
-      <mask id="rect-mask">
-          <rect x="0" y="0" width="250" height="8" fill="white" rx="5"/>
-        </mask>
-        
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="0"
-          y="0"
-          width="136.67"
-          height="8"
-          fill="#3178c6"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="136.67"
-          y="0"
-          width="57.22"
-          height="8"
-          fill="#3572A5"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="193.89"
-          y="0"
-          width="22.62"
-          height="8"
-          fill="#f1e05a"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="216.51"
-          y="0"
-          width="19.95"
-          height="8"
-          fill="#e34c26"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="236.45999999999998"
-          y="0"
-          width="18.61"
-          height="8"
-          fill="#3D6117"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="245.07"
-          y="0"
-          width="14.940000000000001"
-          height="8"
-          fill="#c6538c"
-        />
-      
-      
-    <g transform="translate(0, 25)">
-      <g transform="translate(0, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#3178c6" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        TypeScript 54.67%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#3572A5" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Python 22.89%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#f1e05a" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        JavaScript 9.05%
-      </text>
-    </g>
-  </g></g><g transform="translate(150, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#e34c26" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        HTML 7.98%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#3D6117" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        TeX 3.44%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#c6538c" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        SCSS 1.98%
-      </text>
-    </g>
-  </g></g>
-    </g>
-  
     </svg>
-  
-        </g>
-      </svg>
-    
+  </g>
+  <g transform="translate(25, 80)"><g transform="translate(0, 0)">
+        <circle cx="5" cy="6" r="5" fill="#3178c6"/>
+        <text class="lang-name" x="16" y="10">TypeScript 54.68%</text>
+      </g><g transform="translate(0, 25)">
+        <circle cx="5" cy="6" r="5" fill="#3572A5"/>
+        <text class="lang-name" x="16" y="10">Python 23.05%</text>
+      </g><g transform="translate(0, 50)">
+        <circle cx="5" cy="6" r="5" fill="#f1e05a"/>
+        <text class="lang-name" x="16" y="10">JavaScript 9.16%</text>
+      </g></g>
+  <g transform="translate(175, 80)"><g transform="translate(0, 0)">
+        <circle cx="5" cy="6" r="5" fill="#e34c26"/>
+        <text class="lang-name" x="16" y="10">HTML 7.81%</text>
+      </g><g transform="translate(0, 25)">
+        <circle cx="5" cy="6" r="5" fill="#3D6117"/>
+        <text class="lang-name" x="16" y="10">TeX 3.48%</text>
+      </g><g transform="translate(0, 50)">
+        <circle cx="5" cy="6" r="5" fill="#c6538c"/>
+        <text class="lang-name" x="16" y="10">SCSS 1.82%</text>
+      </g></g>
+</svg>
