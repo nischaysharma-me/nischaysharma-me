@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "0 0 * * *"   # once a day at midnight UTC
   workflow_dispatch:
+  pull_request:
   push:
     branches:
       - main
@@ -18,13 +19,13 @@ jobs:
       - name: Generate contribution snake
         uses: Platane/snk@v3
         with:
-          github_user_name: nischaysharma-me
+          github_user_name: ${{ github.repository_owner }}
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
 
       - name: Push snake to output branch
-        uses: crazy-max/ghaction-github-pages@v4
+        uses: crazy-max/ghaction-github-pages@v5
         with:
           target_branch: output
           build_dir: dist
@@ -37,37 +38,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # NOTE: these three steps need a real Personal Access Token (classic)
-      # with "repo" + "read:user" scopes, saved as the PAT_TOKEN secret.
-      # The default secrets.GITHUB_TOKEN is repo-scoped only and cannot
-      # query general profile/contribution data — using it here causes
-      # "Error fetching user info" failures.
-      - name: Generate trophies (self-hosted, no rate limits)
-        uses: Erik-Donath/github-profile-trophy@feature/generate-svg
-        with:
-          username: nischaysharma-me
-          file: profile/trophy.svg
-          theme: flat
-          token: ${{ secrets.PAT_TOKEN }}
-
-      - name: Generate stats card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: username=nischaysharma-me&show_icons=true&theme=react&bg_color=161616&title_color=E57373&icon_color=E57373&text_color=ffffff&border_color=E57373
-          path: profile/stats.svg
-          token: ${{ secrets.PAT_TOKEN }}
-
-      - name: Generate top languages card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=nischaysharma-me&layout=compact&theme=react&bg_color=161616&title_color=E57373&text_color=ffffff&border_color=E57373
-          path: profile/top-langs.svg
-          token: ${{ secrets.PAT_TOKEN }}
+      # PAT_TOKEN expired and GitHub returns 401 Bad credentials for it.
+      # That failed the old trophy/stats actions before any card was committed.
+      # Public profile data is available to the workflow's GITHUB_TOKEN.
+      - name: Generate stats and top languages
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROFILE_USER: ${{ github.repository_owner }}
+        run: python3 scripts/generate_profile_assets.py
 
       - name: Commit generated assets
+        if: github.event_name != 'pull_request'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh stats & top languages cards"
-          file_pattern: "profile/*.svg"
+          file_pattern: "profile/stats.svg profile/top-langs.svg"
